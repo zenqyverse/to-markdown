@@ -1,0 +1,12 @@
+node_modules/
+release/
+release-final/
+release-*/
+to-markdown-source.zip
+.electron-cache/
+.builder-cache/
+.npm-cache/
+.env
+coverage/
+*.log
+test-results/

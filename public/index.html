@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ubah dokumen DOCX, PDF, TXT, HTML, XLSX, dan CSV menjadi Markdown. Tanpa penyimpanan file di server.">
+  <title>To Markdown — Dokumen masuk. Markdown keluar.</title>
+  <script src="/theme.js"></script>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/editor.css">
+  <link rel="stylesheet" href="/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="/vendor/highlight/styles/github.min.css">
+  <link rel="stylesheet" href="/theme.css">
+  <script src="/vendor/marked.js" defer></script>
+  <script src="/vendor/purify.js" defer></script>
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="To Markdown, beranda"><span class="brand-icon">m<span>↓</span></span> to markdown<span class="brand-dot">.</span></a>
+    <nav class="app-nav" aria-label="Ruang kerja"><a href="#converter" id="nav-converter" aria-current="page">Konverter</a><a href="#editor" id="nav-editor">Markdown editor <span>✎</span></a></nav>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Aktifkan mode terang" title="Ganti tema seluruh aplikasi">☀ <span>Mode terang</span></button>
+  </header>
+
+  <main id="converter-view">
+    <section class="intro" aria-labelledby="page-title">
+      <h1 id="page-title">Dokumen jadi <span>Markdown.</span></h1>
+      <p>Konversi, edit, dan unduh dalam satu tempat.</p>
+    </section>
+
+    <div class="workspace">
+      <section class="upload-panel panel" aria-labelledby="upload-heading">
+        <div class="panel-heading"><span class="step">01</span><h2 id="upload-heading">Dokumen Anda</h2><span class="small-label">MAKS. 10 MB</span></div>
+        <div class="upload-body">
+          <div id="drop-zone" class="drop-zone">
+            <div class="upload-symbol" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><path d="M14 17V8h15l8 8v23H14v-8M29 8v10h8M5 24h20m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <h3>Letakkan file di sini</h3>
+            <p>atau pilih langsung dari perangkat Anda</p>
+            <button id="choose-file" class="button button-dark" type="button"><span aria-hidden="true">＋</span> Pilih file</button>
+            <input id="file-input" type="file" accept=".docx,.pdf,.txt,.html,.xlsx,.csv" hidden>
+            <span class="drop-caption">Satu dokumen, satu langkah lebih ringkas.</span>
+          </div>
+          <div class="format-list" aria-label="Format yang didukung"><span>DOCX</span><span>PDF</span><span>TXT</span><span>HTML</span><span>XLSX</span><span>CSV</span></div>
+
+          <div id="file-card" class="file-card" hidden>
+            <span id="file-badge" class="file-badge">TXT</span>
+            <div class="file-details"><strong id="file-name"></strong><span id="file-size"></span></div>
+            <button id="remove-file" type="button" class="icon-button" aria-label="Hapus file pilihan">×</button>
+          </div>
+          <div id="progress-region" class="progress-region" role="status" aria-live="polite" hidden>
+            <div class="progress-label"><span id="progress-text">Mengunggah…</span><button id="cancel-button" class="text-button" type="button">Batalkan</button></div>
+            <progress id="progress" max="100" value="0" aria-label="Progres upload"></progress>
+          </div>
+          <div id="error-message" class="notice error" role="alert" hidden></div>
+          <button id="convert-button" class="button button-primary" type="button" disabled>Konversi ke Markdown <span aria-hidden="true">↗</span></button>
+          <p class="privacy"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m10 2 6 2.5V10c0 4-6 7-6 7s-6-3-6-7V4.5L10 2Z" stroke="currentColor" stroke-width="1.4"/><path d="m7 9 2 2 4-4" stroke="currentColor" stroke-width="1.4"/></svg> File diproses di memori, tidak disimpan di server.</p>
+        </div>
+      </section>
+
+      <section class="result-panel panel" aria-labelledby="result-heading">
+        <div class="panel-heading"><span class="step">02</span><h2 id="result-heading">Hasil Markdown</h2><span id="result-status" class="result-status">Menunggu file</span></div>
+        <div class="result-toolbar">
+          <div class="tabs" role="tablist" aria-label="Tampilan hasil">
+            <button id="preview-tab" class="tab active" type="button" role="tab" aria-selected="true" aria-controls="preview-panel">Pratinjau</button>
+            <button id="source-tab" class="tab" type="button" role="tab" aria-selected="false" aria-controls="source-panel" tabindex="-1">Kode Markdown</button>
+          </div>
+          <div class="result-toolbar-actions"><button id="copy-button" class="text-button" type="button" disabled>Salin</button><button id="maximize-result" class="text-button" type="button" aria-label="Perbesar pratinjau" title="Perbesar hasil" disabled>⛶ <span>Maximize</span></button></div>
+        </div>
+        <div id="empty-state" class="empty-state">
+          <div class="document-illustration" aria-hidden="true"><span class="illustration-fold"></span><span class="illustration-md">#</span><i></i><i></i><i></i><b>.md</b></div>
+          <h3>Ruang untuk ide Anda.</h3>
+          <p>Hasil konversi akan muncul di sini.<br>Mulai dengan mengunggah sebuah dokumen.</p>
+          <button id="sample-button" type="button" class="sample-button">Coba dengan contoh dokumen <span aria-hidden="true">→</span></button>
+        </div>
+        <div id="preview-panel" class="result-content markdown-body" role="tabpanel" aria-labelledby="preview-tab" tabindex="0" hidden></div>
+        <div id="source-panel" class="result-content" role="tabpanel" aria-labelledby="source-tab" tabindex="0" hidden><pre><code id="markdown-source"></code></pre></div>
+        <div id="warnings" class="notice warning" role="status" hidden></div>
+        <div class="result-footer"><span id="result-meta">Hasil dalam format .md</span><div class="result-actions"><button id="edit-result-button" type="button" class="button button-save" disabled>✎ Edit di Markdown Editor</button><button id="download-button" type="button" class="button button-download" disabled><span aria-hidden="true">↓</span> Unduh .md</button></div></div>
+      </section>
+    </div>
+
+    <section class="benefits" aria-label="Tentang konverter">
+      <div><span class="benefit-icon" aria-hidden="true">↯</span><div><h3>Dari file ke ide, lebih cepat</h3><p>Tanpa pengaturan yang rumit.</p></div></div>
+      <div><span class="benefit-icon" aria-hidden="true">⌘</span><div><h3>Siap untuk alur kerja Anda</h3><p>Untuk catatan, repositori, dan dokumentasi.</p></div></div>
+      <div><span class="benefit-icon" aria-hidden="true">♧</span><div><h3>Dokumen tetap milik Anda</h3><p>Tanpa akun dan tanpa arsip upload.</p></div></div>
+    </section>
+    <details class="limitations"><summary>Yang perlu diketahui tentang hasil konversi <span aria-hidden="true">＋</span></summary><p>DOCX dan HTML mempertahankan struktur dasar, tetapi gambar dan gaya kompleks dihilangkan. PDF diekstrak sebagai teks per halaman; scan memerlukan OCR yang belum tersedia. XLSX dan CSV memakai baris pertama sebagai header. Rumus Excel menggunakan nilai tersimpan, tanpa dihitung ulang. TXT mempertahankan teks asli.</p></details>
+  </main>
+  <main id="editor-view" hidden>
+    <div class="editor-heading"><div><div class="eyebrow">RUANG KERJA ANDA</div><h1>Markdown editor<span>.</span></h1></div><div class="editor-heading-actions"><button id="editor-help" type="button" class="button button-subtle">Panduan & pintasan</button><button id="editor-focus" type="button" class="button button-subtle" aria-pressed="false">Mode fokus</button></div></div>
+    <section class="editor-shell" aria-label="Markdown editor">
+      <div class="editor-document-bar">
+        <div class="document-title"><span class="editor-file-icon" aria-hidden="true">M↓</span><div><label for="editor-filename">NAMA DOKUMEN</label><input id="editor-filename" value="tanpa-judul.md" maxlength="120" spellcheck="false" aria-label="Nama file Markdown"></div></div>
+        <div class="document-actions"><button id="editor-new" type="button" class="button button-subtle">＋ Baru</button><button id="editor-open" type="button" class="button button-subtle">Buka .md</button><input type="file" id="editor-file" accept=".md,.markdown,.txt" hidden><button id="editor-copy" type="button" class="button button-subtle">Salin</button><button id="editor-download" type="button" class="button button-save">↓ Unduh .md</button></div>
+      </div>
+      <div class="editor-toolbar" role="toolbar" aria-label="Format Markdown">
+        <div class="toolbar-group"><button type="button" id="editor-undo" title="Urungkan (Ctrl+Z)" aria-label="Urungkan" disabled>↶</button><button type="button" id="editor-redo" title="Ulangi (Ctrl+Shift+Z)" aria-label="Ulangi" disabled>↷</button></div>
+        <div class="toolbar-group"><label class="sr-only" for="editor-heading-level">Format judul</label><select id="editor-heading-level"><option value="">Gaya teks</option><option value="paragraph">Paragraf</option><option value="1">Heading 1</option><option value="2">Heading 2</option><option value="3">Heading 3</option><option value="4">Heading 4</option><option value="5">Heading 5</option><option value="6">Heading 6</option></select><button type="button" data-command="bold" aria-label="Tebal" title="Tebal (Ctrl+B)"><b>B</b></button><button type="button" data-command="italic" aria-label="Miring" title="Miring (Ctrl+I)"><i>I</i></button><button type="button" data-command="strike" aria-label="Coret" title="Coret"><s>S</s></button><button type="button" data-command="inline-code" aria-label="Kode inline" title="Kode inline">&lt;/&gt;</button></div>
+        <div class="toolbar-group"><button type="button" data-command="bullet" aria-label="Daftar bullet" title="Daftar bullet">• ≡</button><button type="button" data-command="ordered" aria-label="Daftar bernomor" title="Daftar bernomor">1. ≡</button><button type="button" data-command="task" aria-label="Checklist" title="Checklist">☑</button><button type="button" data-command="quote" aria-label="Kutipan" title="Kutipan">❞</button><button type="button" data-command="rule" aria-label="Garis pemisah" title="Garis pemisah">―</button></div>
+        <div class="toolbar-group toolbar-inserts"><button type="button" data-insert="link">Tautan</button><button type="button" data-insert="image">Gambar</button><button type="button" data-insert="table">Tabel</button><button type="button" data-insert="code">Blok kode</button><button type="button" data-insert="mermaid">Diagram</button><button type="button" data-insert="math">Rumus</button></div>
+        <div class="toolbar-group"><button id="editor-search-toggle" type="button" title="Cari & ganti (Ctrl+F)" aria-expanded="false" aria-controls="editor-search">Cari & ganti</button><button id="editor-template" type="button">Template</button></div>
+      </div>
+      <div id="editor-search" class="editor-search" hidden>
+        <label>Cari<input id="editor-find" type="search" placeholder="Teks yang dicari" autocomplete="off"></label><label>Ganti dengan<input id="editor-replacement" type="text" placeholder="Teks pengganti" autocomplete="off"></label><label class="check-label"><input id="editor-case" type="checkbox"> Aa</label><span id="editor-match-count" role="status">0 hasil</span><div class="search-actions"><button id="editor-find-prev" type="button" title="Hasil sebelumnya">↑</button><button id="editor-find-next" type="button" title="Hasil berikutnya">↓</button><button id="editor-replace" type="button">Ganti</button><button id="editor-replace-all" type="button">Ganti semua</button><button id="editor-search-close" type="button" aria-label="Tutup pencarian">×</button></div>
+      </div>
+      <div class="editor-view-bar"><div class="editor-view-options" role="group" aria-label="Tampilan editor"><button type="button" data-layout="split" aria-pressed="true">Berdampingan</button><button type="button" data-layout="write" aria-pressed="false">Tulis</button><button type="button" data-layout="preview" aria-pressed="false">Pratinjau</button></div><div class="editor-settings"><label class="check-label"><input id="editor-sync" type="checkbox" checked> Scroll sinkron</label><button id="editor-outline-toggle" type="button" aria-expanded="false" aria-controls="editor-outline">Outline</button><button id="editor-settings-toggle" type="button" aria-expanded="false" aria-controls="editor-settings-panel">Pengaturan ⚙</button></div></div>
+      <div id="editor-settings-panel" class="editor-settings-panel" hidden><label class="check-label"><input id="editor-autosave" type="checkbox" checked> Autosave di browser ini</label><label class="check-label"><input id="editor-wrap" type="checkbox" checked> Bungkus baris</label><label class="check-label"><input id="editor-spellcheck" type="checkbox"> Periksa ejaan</label><label>Ukuran teks<select id="editor-font-size"><option value="13">Kecil</option><option value="15" selected>Normal</option><option value="18">Besar</option><option value="21">Sangat besar</option></select></label><label>Tema<select id="editor-theme"><option value="light">Terang</option><option value="dark">Gelap</option></select></label><button id="editor-forget" type="button" class="danger-button">Hapus draf lokal</button></div>
+      <div id="editor-notice" class="editor-notice" role="status" hidden></div>
+      <div id="editor-body" class="editor-body" data-layout="split">
+        <aside id="editor-outline" class="editor-outline" hidden><h2>Isi dokumen</h2><nav id="editor-outline-items" aria-label="Outline dokumen"></nav></aside>
+        <div class="editor-write-pane"><div class="pane-caption"><label for="editor-text">MARKDOWN</label><span>GFM · UTF-8</span></div><textarea id="editor-text" aria-label="Isi Markdown" spellcheck="false" wrap="soft" placeholder="# Mulai dari sebuah ide&#10;&#10;Tulis Markdown di sini, buka file .md, atau kirim hasil konversi ke editor.&#10;&#10;Gunakan toolbar untuk menambahkan tabel, kode, diagram, dan rumus."></textarea></div>
+        <div class="editor-preview-pane"><div class="pane-caption"><span>PRATINJAU LANGSUNG</span><span id="editor-render-status">Siap</span></div><div id="editor-preview" class="markdown-body" tabindex="0" aria-label="Pratinjau editor"></div></div>
+      </div>
+      <div class="editor-statusbar"><span id="editor-stats">0 kata · 0 karakter · 0 menit baca</span><span id="editor-cursor">Baris 1, kolom 1</span><span id="editor-save-status" role="status">Draf lokal aktif</span></div>
+    </section>
+    <p class="editor-privacy">Tulisan disimpan otomatis hanya di browser ini. Markdown, kode, diagram, dan rumus diproses di perangkat Anda. Gambar ditulis sebagai referensi; media eksternal tidak dimuat dalam pratinjau.</p>
+  </main>
+  <dialog id="editor-dialog" class="editor-dialog"><form id="editor-dialog-form"><div class="dialog-heading"><h2 id="editor-dialog-title">Sisipkan</h2><button type="button" id="editor-dialog-close" class="icon-button" aria-label="Tutup dialog">×</button></div><div id="editor-dialog-fields"></div><p id="editor-dialog-hint" class="dialog-hint"></p><div class="dialog-actions"><button id="editor-dialog-cancel" type="button" class="button button-subtle">Batal</button><button id="editor-dialog-submit" type="submit" class="button button-save">Sisipkan</button></div></form></dialog>
+  <dialog id="editor-confirm" class="editor-dialog"><h2 id="editor-confirm-title">Ganti dokumen?</h2><p id="editor-confirm-message"></p><div class="dialog-actions"><button id="editor-confirm-cancel" type="button" class="button button-subtle">Batal</button><button id="editor-confirm-ok" type="button" class="button button-save">Lanjutkan</button></div></dialog>
+  <dialog id="result-dialog" class="result-dialog" aria-labelledby="result-heading"></dialog>
+  <footer class="site-footer"><span>Lebih ringan dibaca. Lebih mudah dibagikan.</span><span>Dibuat untuk teks yang berarti. <span class="footer-mark">M↓</span></span></footer>
+  <span id="announcement" class="sr-only" role="status" aria-live="polite"></span>
+</body>
+</html>
