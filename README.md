@@ -1,8 +1,16 @@
 # To Markdown
 
-Konverter dokumen dan Markdown editor untuk web lokal serta Windows. Versi desktop terbaru: **1.3.0**. Installer: [To-Markdown-Setup-1.3.0-x64.exe](release-1.3.0/To-Markdown-Setup-1.3.0-x64.exe).
+Konverter dokumen dan Markdown editor untuk web lokal serta Windows. Versi desktop terbaru: **1.3.1**. Installer: [To-Markdown-Setup-1.3.1-x64.exe](release-1.3.1/To-Markdown-Setup-1.3.1-x64.exe).
 
 ## Aplikasi Windows (.exe)
+
+### Paket lebih kecil pada 1.3.1
+
+Installer: **140,5 MiB**, turun **22,3%** dari 180,8 MiB pada 1.3.0. Ukuran hasil ekstraksi: **435,1 MiB**, sebelumnya 643,2 MiB. [Unduh rilis 1.3.1](https://github.com/zenqyverse/to-markdown/releases/tag/v1.3.1).
+
+Paket produksi mengecualikan source map debugging, bundle Mermaid alternatif yang tidak digunakan dan demo cytoscape-fcose; bahasa Chromium dibatasi ke Indonesia dan Inggris. Tidak ada fitur konversi/editor/updater yang dihapus. Dependency PDF, canvas native, font, lisensi, dan seluruh modul Mermaid minified tetap disertakan. Pengaturan ini hanya berlaku saat packaging, bukan pada instalasi dependency untuk pengembangan.
+
+Pemeriksaan terbatas: konversi sintetis TXT/HTML/CSV/DOCX/PDF/XLSX melalui worker dari paket baru berhasil; 106 modul Mermaid yang direferensikan tersedia; kode aplikasi yang dipertahankan identik dengan 1.3.0. Tidak dilakukan QA penuh atau uji instalasi/upgrade Windows. Lihat [audit ukuran](docs/package-size-audit.md) dan [hasil optimasi](docs/package-size-optimization.json).
 
 ### Pembaruan online mulai versi 1.3.0
 
@@ -12,7 +20,7 @@ Versi 1.3.0 belum memiliki sertifikat penerbit. `verifyUpdateCodeSignature: fals
 
 Untuk rilis berikutnya: naikkan versi package, sesuaikan direktori output, build, lalu unggah `.exe`, `.exe.blockmap`, dan `latest.yml` bersama-sama ke GitHub Release stabil dengan tag versi yang sesuai. Pertahankan `appId` dan nama produk. QA/instalasi serta simulasi upgrade antarversi belum dijalankan pada 1.3.0; validasi rilis ini terbatas pada sintaks, build, dan kelengkapan artefak.
 
-Installer `To-Markdown-Setup-1.3.0-x64.exe` ditujukan untuk Windows 10/11 64-bit. Jalankan installer (memerlukan izin administrator), lalu buka To Markdown dari Start Menu atau shortcut desktop. Node.js, npm, dan browser terpisah tidak diperlukan.
+Installer `To-Markdown-Setup-1.3.1-x64.exe` ditujukan untuk Windows 10/11 64-bit. Jalankan installer (memerlukan izin administrator), lalu buka To Markdown dari Start Menu atau shortcut desktop. Node.js, npm, dan browser terpisah tidak diperlukan.
 
 Untuk menjadikannya aplikasi default: klik kanan file `.md` → **Open with / Buka dengan** → **Choose another app / Pilih aplikasi lain** → **To Markdown** → **Always / Selalu**. Ulangi untuk `.markdown` jika digunakan. Installer mendaftarkan asosiasi; pilihan default tetap ditentukan pengguna melalui Windows.
 
@@ -187,7 +195,7 @@ Respons gagal berbentuk `{"error":"Pesan untuk pengguna"}`. Kode HTTP: `400` per
 - Tombol tema di header mengubah seluruh aplikasi antara gelap dan terang. Preferensi disimpan di browser dan disinkronkan dengan pengaturan tema editor.
 - Palet charcoal/tosca dengan coral untuk kesalahan dan kuning untuk peringatan. League Spartan dan Plus Jakarta Sans disajikan lokal dari `public/fonts`, beserta lisensi OFL.
 
-Pembaruan ini tersedia pada web melalui `npm start` dan installer desktop versi 1.3.0 di `release-1.3.0/To-Markdown-Setup-1.3.0-x64.exe`.
+Pembaruan ini tersedia pada web melalui `npm start` dan installer desktop versi 1.3.1 di `release-1.3.1/To-Markdown-Setup-1.3.1-x64.exe`.
 
 ### Pembaruan desktop
 
@@ -237,7 +245,7 @@ Panduan mekanisme dan provider: [Auto Update electron-builder v26](https://www.e
 3. Build versi baru, periksa tanda tangan dan lakukan uji pembaruan sebelum distribusi publik. Pengujian ini belum dilakukan pada rilis 1.2.0.
 4. Publikasikan rilis dan pasang versi pertama yang mendukung updater secara manual. Setelah itu, setiap perubahan tetap memerlukan nomor versi baru, build bertanda tangan, dan publikasi rilis baru.
 
-Lokasi output saat ini `release-1.3.0` dalam `electron-builder.json`; sesuaikan untuk rilis berikutnya atau gunakan folder tetap seperti `release`. Memperbarui README saja tidak mengubah installer yang sudah dibuat.
+Lokasi output saat ini `release-1.3.1` dalam `electron-builder.json`; sesuaikan untuk rilis berikutnya atau gunakan folder tetap seperti `release`. Memperbarui README saja tidak mengubah installer yang sudah dibuat.
 
 ## Status pengujian
 

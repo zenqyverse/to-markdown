@@ -1,0 +1,48 @@
+{
+  "maps": {
+    "count": 786,
+    "bytes": 129546450,
+    "MiB": 123.55
+  },
+  "unusedLocales": {
+    "count": 53,
+    "bytes": 49959776,
+    "MiB": 47.65
+  },
+  "demosNotMaps": {
+    "count": 17,
+    "bytes": 8558508,
+    "MiB": 8.16
+  },
+  "mermaidBuilds": {
+    "chunks/mermaid.esm.min/": {
+      "count": 105,
+      "bytes": 5404632,
+      "MiB": 5.15
+    },
+    "chunks/mermaid.esm/": {
+      "count": 105,
+      "bytes": 11375274,
+      "MiB": 10.85
+    }
+  },
+  "mermaidStandaloneUnused": {
+    "count": 2,
+    "bytes": 18657837,
+    "MiB": 17.79
+  },
+  "devPackages": [
+    {
+      "name": "electron",
+      "present": false
+    },
+    {
+      "name": "electron-builder",
+      "present": false
+    },
+    {
+      "name": "supertest",
+      "present": false
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "beforeBytes": 674424090,
+  "afterBytes": 456259893,
+  "savedBytes": 218164197,
+  "removedFiles": 963,
+  "unexpectedRemoved": [],
+  "changedApplicationFiles": [],
+  "mermaidModulesChecked": 106,
+  "missingMermaidModules": [],
+  "remainingMaps": 0,
+  "remainingLocales": [
+    "locales/en-US.pak",
+    "locales/id.pak"
+  ],
+  "installerBeforeBytes": 189585324,
+  "installerAfterBytes": 147290736,
+  "installerReductionPercent": 22.31,
+  "packagedConversionChecks": [
+    "txt",
+    "html",
+    "csv",
+    "docx",
+    "pdf",
+    "xlsx"
+  ],
+  "elevationHelperPreserved": true
+}

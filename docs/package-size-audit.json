@@ -1,0 +1,368 @@
+{
+  "installerBytes": 189585324,
+  "totalBytes": 674424090,
+  "fileCount": 14380,
+  "runtimeBytes": 374502365,
+  "appBytes": 299921725,
+  "dependenciesBytes": 299492065,
+  "ownCodeBytes": 429660,
+  "topPackages": [
+    {
+      "name": "mermaid",
+      "bytes": 127198350,
+      "MiB": 121.31
+    },
+    {
+      "name": "@napi-rs/canvas-win32-x64-msvc",
+      "bytes": 38835733,
+      "MiB": 37.04
+    },
+    {
+      "name": "pdfjs-dist",
+      "bytes": 37182602,
+      "MiB": 35.46
+    },
+    {
+      "name": "exceljs",
+      "bytes": 21569562,
+      "MiB": 20.57
+    },
+    {
+      "name": "@mermaid-js/parser",
+      "bytes": 10829642,
+      "MiB": 10.33
+    },
+    {
+      "name": "cytoscape-fcose",
+      "bytes": 9302011,
+      "MiB": 8.87
+    },
+    {
+      "name": "elkjs",
+      "bytes": 8208184,
+      "MiB": 7.83
+    },
+    {
+      "name": "cytoscape",
+      "bytes": 5490255,
+      "MiB": 5.24
+    },
+    {
+      "name": "@highlightjs/cdn-assets",
+      "bytes": 4369058,
+      "MiB": 4.17
+    },
+    {
+      "name": "katex",
+      "bytes": 4028017,
+      "MiB": 3.84
+    },
+    {
+      "name": "es-toolkit",
+      "bytes": 3172267,
+      "MiB": 3.03
+    },
+    {
+      "name": "es-abstract",
+      "bytes": 2735690,
+      "MiB": 2.61
+    },
+    {
+      "name": "@mixmark-io/domino",
+      "bytes": 1622034,
+      "MiB": 1.55
+    },
+    {
+      "name": "csv-parse",
+      "bytes": 1562951,
+      "MiB": 1.49
+    },
+    {
+      "name": "dompurify",
+      "bytes": 1519681,
+      "MiB": 1.45
+    },
+    {
+      "name": "mammoth",
+      "bytes": 1265923,
+      "MiB": 1.21
+    },
+    {
+      "name": "chevrotain",
+      "bytes": 1242497,
+      "MiB": 1.18
+    },
+    {
+      "name": "d3",
+      "bytes": 1056906,
+      "MiB": 1.01
+    },
+    {
+      "name": "js-yaml",
+      "bytes": 951248,
+      "MiB": 0.91
+    },
+    {
+      "name": "underscore",
+      "bytes": 903945,
+      "MiB": 0.86
+    },
+    {
+      "name": "pako",
+      "bytes": 777680,
+      "MiB": 0.74
+    },
+    {
+      "name": "async",
+      "bytes": 770422,
+      "MiB": 0.73
+    },
+    {
+      "name": "jszip",
+      "bytes": 763504,
+      "MiB": 0.73
+    },
+    {
+      "name": "lodash-es",
+      "bytes": 633939,
+      "MiB": 0.6
+    },
+    {
+      "name": "bluebird",
+      "bytes": 607299,
+      "MiB": 0.58
+    }
+  ],
+  "sourceMaps": {
+    "bytes": 129546450,
+    "count": 786,
+    "packages": [
+      {
+        "name": "mermaid/dist",
+        "bytes": 83870422,
+        "MiB": 79.99
+      },
+      {
+        "name": "exceljs/dist",
+        "bytes": 14828583,
+        "MiB": 14.14
+      },
+      {
+        "name": "pdfjs-dist/legacy",
+        "bytes": 10521267,
+        "MiB": 10.03
+      },
+      {
+        "name": "pdfjs-dist/build",
+        "bytes": 8226544,
+        "MiB": 7.85
+      },
+      {
+        "name": "@mermaid-js/parser",
+        "bytes": 7660376,
+        "MiB": 7.31
+      },
+      {
+        "name": "pdfjs-dist/web",
+        "bytes": 813731,
+        "MiB": 0.78
+      },
+      {
+        "name": "js-yaml/dist",
+        "bytes": 554586,
+        "MiB": 0.53
+      },
+      {
+        "name": "dompurify/dist",
+        "bytes": 504198,
+        "MiB": 0.48
+      },
+      {
+        "name": "marked/lib",
+        "bytes": 415725,
+        "MiB": 0.4
+      },
+      {
+        "name": "pdfjs-dist/image_decoders",
+        "bytes": 404014,
+        "MiB": 0.39
+      },
+      {
+        "name": "electron-updater/out",
+        "bytes": 347264,
+        "MiB": 0.33
+      },
+      {
+        "name": "mermaid/node_modules",
+        "bytes": 302634,
+        "MiB": 0.29
+      }
+    ]
+  },
+  "topFiles": [
+    {
+      "path": "To Markdown.exe",
+      "bytes": 250093056
+    },
+    {
+      "path": "resources/app/node_modules/@napi-rs/canvas-win32-x64-msvc/skia.win32-x64-msvc.node",
+      "bytes": 27868160
+    },
+    {
+      "path": "dxcompiler.dll",
+      "bytes": 25779712
+    },
+    {
+      "path": "resources/app/node_modules/mermaid/dist/mermaid.min.js.map",
+      "bytes": 19690261
+    },
+    {
+      "path": "resources/app/node_modules/mermaid/dist/mermaid.js.map",
+      "bytes": 19546811
+    },
+    {
+      "path": "resources.pak",
+      "bytes": 13372221
+    },
+    {
+      "path": "resources/app/node_modules/mermaid/dist/mermaid.js",
+      "bytes": 13119999
+    },
+    {
+      "path": "resources/app/node_modules/@napi-rs/canvas-win32-x64-msvc/icudtl.dat",
+      "bytes": 10876560
+    },
+    {
+      "path": "icudtl.dat",
+      "bytes": 10824576
+    },
+    {
+      "path": "LICENSES.chromium.html",
+      "bytes": 5705935
+    },
+    {
+      "path": "resources/app/node_modules/mermaid/dist/mermaid.min.js",
+      "bytes": 5537838
+    },
+    {
+      "path": "resources/app/node_modules/pdfjs-dist/legacy/build/pdf.worker.mjs.map",
+      "bytes": 5531143
+    },
+    {
+      "path": "vk_swiftshader.dll",
+      "bytes": 5453312
+    },
+    {
+      "path": "resources/app/node_modules/pdfjs-dist/build/pdf.worker.mjs.map",
+      "bytes": 5321218
+    },
+    {
+      "path": "resources/app/node_modules/mermaid/dist/chunks/mermaid.esm.min/elk-VW7CPVO3.mjs.map",
+      "bytes": 5063555
+    },
+    {
+      "path": "resources/app/node_modules/elkjs/lib/elk-worker.js",
+      "bytes": 4899976
+    },
+    {
+      "path": "d3dcompiler_47.dll",
+      "bytes": 4753864
+    },
+    {
+      "path": "resources/app/node_modules/mermaid/dist/chunks/mermaid.esm/elk-JD43GPKC.mjs.map",
+      "bytes": 4635999
+    },
+    {
+      "path": "resources/app/node_modules/cytoscape-fcose/demo/demo.gif",
+      "bytes": 4631886
+    },
+    {
+      "path": "resources/app/node_modules/exceljs/dist/exceljs.js.map",
+      "bytes": 3818697
+    }
+  ],
+  "locales": [
+    {
+      "name": "locales",
+      "bytes": 51195034,
+      "MiB": 48.82
+    }
+  ],
+  "extensions": [
+    {
+      "name": ".map",
+      "bytes": 129546450,
+      "MiB": 123.55
+    },
+    {
+      "name": ".js",
+      "bytes": 64769916,
+      "MiB": 61.77
+    },
+    {
+      "name": ".mjs",
+      "bytes": 43416082,
+      "MiB": 41.4
+    },
+    {
+      "name": ".node",
+      "bytes": 27868160,
+      "MiB": 26.58
+    },
+    {
+      "name": ".dat",
+      "bytes": 10876560,
+      "MiB": 10.37
+    },
+    {
+      "name": ".gif",
+      "bytes": 7812039,
+      "MiB": 7.45
+    },
+    {
+      "name": ".ts",
+      "bytes": 2230304,
+      "MiB": 2.13
+    },
+    {
+      "name": ".css",
+      "bytes": 1740290,
+      "MiB": 1.66
+    },
+    {
+      "name": ".ttf",
+      "bytes": 1601052,
+      "MiB": 1.53
+    },
+    {
+      "name": ".json",
+      "bytes": 1509202,
+      "MiB": 1.44
+    },
+    {
+      "name": ".cjs",
+      "bytes": 1378700,
+      "MiB": 1.31
+    },
+    {
+      "name": ".bcmap",
+      "bytes": 1165667,
+      "MiB": 1.11
+    },
+    {
+      "name": ".mts",
+      "bytes": 1123374,
+      "MiB": 1.07
+    },
+    {
+      "name": ".wasm",
+      "bytes": 890182,
+      "MiB": 0.85
+    },
+    {
+      "name": "",
+      "bytes": 722444,
+      "MiB": 0.69
+    }
+  ]
+}
