@@ -51,8 +51,17 @@ else {
     await fs.writeFile(portFile, JSON.stringify(server.address().port));
     log('Server ready');
     window = new BrowserWindow({ width: 1280, height: 900, minWidth: 650, minHeight: 600, title: 'To Markdown', icon: path.join(__dirname, 'icon.ico'), backgroundColor: '#1C1D21', webPreferences: { preload: path.join(__dirname, 'preload.cjs'), contextIsolation: true, nodeIntegration: false, sandbox: true } });
+    const updater = require('./updater.cjs')(window, () => new Promise(resolve => {
+      const token = crypto.randomUUID();
+      const done = value => { clearTimeout(timer); ipcMain.removeListener('update:safety-result', receive); resolve(value); };
+      const receive = (event, reply, safe) => { if (event.sender === window.webContents && event.senderFrame === window.webContents.mainFrame && reply === token) done(safe === true); };
+      const timer = setTimeout(() => done(false), 3000);
+      ipcMain.on('update:safety-result', receive);
+      window.webContents.send('update:safety', token);
+    }), log);
     Menu.setApplicationMenu(Menu.buildFromTemplate([{ label: 'Bantuan', submenu: [
-      { label: 'Pembaruan aplikasi…', click: async () => {
+      { label: 'Periksa pembaruan…', click: () => updater.check() },
+      { label: 'Pasang installer manual…', click: async () => {
         try {
           const choice = await dialog.showMessageBox(window, { type: 'info', title: 'Pembaruan To Markdown', message: `To Markdown ${app.getVersion()}`, detail: 'Pembaruan manual: unduh installer To Markdown versi terbaru, simpan dokumen Anda, lalu pilih installer tersebut di sini. Pasang ke lokasi instalasi yang sama. Pemeriksaan versi online belum tersedia.', buttons: ['Pilih installer…', 'Tutup'], defaultId: 1, cancelId: 1 });
           if (choice.response !== 0) return;
@@ -112,6 +121,8 @@ else {
     });
     await window.loadURL(origin + '/#editor');
     log('Window loaded');
+    const updateTimer = setTimeout(() => { if (!window.isDestroyed()) updater.check(false); }, 8000);
+    updateTimer.unref();
   }).catch(error => { log(error.stack); dialog.showErrorBox('Aplikasi gagal dimulai', error.message); app.quit(); });
   app.on('window-all-closed', () => app.quit());
   app.on('before-quit', () => server?.close());

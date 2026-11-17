@@ -1,11 +1,58 @@
 {
   "appId": "id.tomarkdown.desktop",
   "productName": "To Markdown",
-  "directories": { "output": "release-1.2.0" },
-  "files": ["desktop/**", "public/**", "server/**", "shared/**", "package.json"],
+  "directories": {
+    "output": "release-1.3.0"
+  },
+  "files": [
+    "desktop/**",
+    "public/**",
+    "server/**",
+    "shared/**",
+    "package.json"
+  ],
   "asar": false,
   "npmRebuild": false,
-  "win": { "target": [{ "target": "nsis", "arch": ["x64"] }], "icon": "desktop/icon.ico", "signExecutable": false, "artifactName": "To-Markdown-Setup-${version}-${arch}.${ext}" },
-  "nsis": { "oneClick": false, "perMachine": true, "allowToChangeInstallationDirectory": true, "createDesktopShortcut": true, "runAfterFinish": false, "installerIcon": "desktop/icon.ico", "uninstallerIcon": "desktop/icon.ico" },
-  "fileAssociations": [{ "ext": ["md", "markdown"], "name": "Markdown Document", "description": "Markdown document", "role": "Editor" }]
+  "win": {
+    "target": [
+      {
+        "target": "nsis",
+        "arch": [
+          "x64"
+        ]
+      }
+    ],
+    "icon": "desktop/icon.ico",
+    "signExecutable": false,
+    "artifactName": "To-Markdown-Setup-${version}-${arch}.${ext}",
+    "verifyUpdateCodeSignature": false
+  },
+  "nsis": {
+    "oneClick": false,
+    "perMachine": true,
+    "allowToChangeInstallationDirectory": true,
+    "createDesktopShortcut": true,
+    "runAfterFinish": false,
+    "installerIcon": "desktop/icon.ico",
+    "uninstallerIcon": "desktop/icon.ico"
+  },
+  "fileAssociations": [
+    {
+      "ext": [
+        "md",
+        "markdown"
+      ],
+      "name": "Markdown Document",
+      "description": "Markdown document",
+      "role": "Editor"
+    }
+  ],
+  "publish": [
+    {
+      "provider": "github",
+      "owner": "zenqyverse",
+      "repo": "to-markdown",
+      "releaseType": "release"
+    }
+  ]
 }

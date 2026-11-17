@@ -22,6 +22,7 @@ let nativeSaved = '';
 
 function snapshot() { return { text: input.value, start: input.selectionStart, end: input.selectionEnd }; }
 function identity() { return JSON.stringify([filename.value, input.value]); }
+window.desktop?.onUpdateSafety?.(() => identity() === nativeSaved || (!nativeSaved && !input.value));
 function notice(message = '') { $('editor-notice').textContent = message; $('editor-notice').hidden = !message; }
 function announce(message) { $('announcement').textContent = message; }
 function updateHistoryButtons() { $('editor-undo').disabled = history.index <= 0 && history.entries[history.index].text === input.value; $('editor-redo').disabled = history.index >= history.entries.length - 1; }

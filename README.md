@@ -1,10 +1,18 @@
 # To Markdown
 
-Konverter dokumen dan Markdown editor untuk web lokal serta Windows. Versi desktop terbaru: **1.2.0**. Installer: [To-Markdown-Setup-1.2.0-x64.exe](release-1.2.0/To-Markdown-Setup-1.2.0-x64.exe).
+Konverter dokumen dan Markdown editor untuk web lokal serta Windows. Versi desktop terbaru: **1.3.0**. Installer: [To-Markdown-Setup-1.3.0-x64.exe](release-1.3.0/To-Markdown-Setup-1.3.0-x64.exe).
 
 ## Aplikasi Windows (.exe)
 
-Installer `To-Markdown-Setup-1.2.0-x64.exe` ditujukan untuk Windows 10/11 64-bit. Jalankan installer (memerlukan izin administrator), lalu buka To Markdown dari Start Menu atau shortcut desktop. Node.js, npm, dan browser terpisah tidak diperlukan.
+### Pembaruan online mulai versi 1.3.0
+
+Pasang 1.3.0 secara manual sekali jika masih memakai 1.2.0. Aplikasi memeriksa rilis stabil dari [GitHub Releases](https://github.com/zenqyverse/to-markdown/releases) setelah dibuka; pemeriksaan juga tersedia melalui **Bantuan → Periksa pembaruan**. Unduhan dimulai setelah disetujui, dengan progres di judul jendela dan taskbar. Pemasangan meminta persetujuan dan hanya dilanjutkan jika dokumen telah disimpan ke file. Tidak ada pemasangan otomatis saat keluar aplikasi. Saat offline, editor tetap dapat dipakai.
+
+Versi 1.3.0 belum memiliki sertifikat penerbit. `verifyUpdateCodeSignature: false` dinyatakan secara eksplisit untuk distribusi unsigned ini; checksum SHA-512 dan HTTPS tetap digunakan, tetapi bukan pengganti verifikasi identitas penerbit. Ketika sertifikat tersedia, aktifkan signing serta verifikasi tanda tangan dan rencanakan rilis transisi. Jangan menyertakan token GitHub dalam aplikasi.
+
+Untuk rilis berikutnya: naikkan versi package, sesuaikan direktori output, build, lalu unggah `.exe`, `.exe.blockmap`, dan `latest.yml` bersama-sama ke GitHub Release stabil dengan tag versi yang sesuai. Pertahankan `appId` dan nama produk. QA/instalasi serta simulasi upgrade antarversi belum dijalankan pada 1.3.0; validasi rilis ini terbatas pada sintaks, build, dan kelengkapan artefak.
+
+Installer `To-Markdown-Setup-1.3.0-x64.exe` ditujukan untuk Windows 10/11 64-bit. Jalankan installer (memerlukan izin administrator), lalu buka To Markdown dari Start Menu atau shortcut desktop. Node.js, npm, dan browser terpisah tidak diperlukan.
 
 Untuk menjadikannya aplikasi default: klik kanan file `.md` → **Open with / Buka dengan** → **Choose another app / Pilih aplikasi lain** → **To Markdown** → **Always / Selalu**. Ulangi untuk `.markdown` jika digunakan. Installer mendaftarkan asosiasi; pilihan default tetap ditentukan pengguna melalui Windows.
 
@@ -179,19 +187,19 @@ Respons gagal berbentuk `{"error":"Pesan untuk pengguna"}`. Kode HTTP: `400` per
 - Tombol tema di header mengubah seluruh aplikasi antara gelap dan terang. Preferensi disimpan di browser dan disinkronkan dengan pengaturan tema editor.
 - Palet charcoal/tosca dengan coral untuk kesalahan dan kuning untuk peringatan. League Spartan dan Plus Jakarta Sans disajikan lokal dari `public/fonts`, beserta lisensi OFL.
 
-Pembaruan ini tersedia pada web melalui `npm start` dan installer desktop versi 1.2.0 di `release-1.2.0/To-Markdown-Setup-1.2.0-x64.exe`.
+Pembaruan ini tersedia pada web melalui `npm start` dan installer desktop versi 1.3.0 di `release-1.3.0/To-Markdown-Setup-1.3.0-x64.exe`.
 
 ### Pembaruan desktop
 
 Nama aplikasi adalah **To Markdown**, dengan logo proyek pada executable dan installer. Ikon Windows dibuat ulang dengan `powershell -NoProfile -ExecutionPolicy Bypass -File desktop/build-icon.ps1`.
 
-Menu **Bantuan → Pembaruan aplikasi** menampilkan versi terpasang dan memungkinkan pengguna memilih serta menjalankan installer baru. Unduh installer dari sumber yang dipercaya, simpan dokumen, lalu jalankan installer ke lokasi instalasi yang sama. Identitas aplikasi tetap sama untuk pembaruan instalasi lama. Tidak perlu menghapus aplikasi terlebih dahulu.
+Menu **Bantuan → Pasang installer manual** menampilkan versi terpasang dan memungkinkan pengguna memilih serta menjalankan installer baru. Unduh installer dari sumber yang dipercaya, simpan dokumen, lalu jalankan installer ke lokasi instalasi yang sama. Identitas aplikasi tetap sama untuk pembaruan instalasi lama. Tidak perlu menghapus aplikasi terlebih dahulu.
 
-Belum ada pemeriksaan versi online atau auto-update karena belum tersedia server distribusi. Installer belum ditandatangani sertifikat penerbit. Untuk build: `npm run dist -- --publish never`. Rilis ini tidak melalui QA testing; hanya pemeriksaan sintaks dan proses build.
+Sejak 1.3.0, updater online menggunakan GitHub Releases zenqyverse/to-markdown. Installer belum ditandatangani sertifikat penerbit. Untuk build: `npm run dist -- --publish never`. Rilis ini tidak melalui QA testing; hanya pemeriksaan sintaks dan proses build.
 
 ## Panduan pemula: sertifikat penerbit dan auto-update
 
-Bagian ini adalah panduan persiapan, **belum diaktifkan pada aplikasi**. Tidak ada pembelian sertifikat, pembuatan akun, atau publikasi rilis otomatis dari proyek ini.
+Bagian signing berikut tetap berupa panduan persiapan. Integrasi updater dan konfigurasi GitHub sudah diterapkan pada 1.3.0; langkah updater di bawah menjadi acuan pemeliharaan rilis berikutnya.
 
 ### 1. Apa yang perlu disiapkan?
 
@@ -229,7 +237,7 @@ Panduan mekanisme dan provider: [Auto Update electron-builder v26](https://www.e
 3. Build versi baru, periksa tanda tangan dan lakukan uji pembaruan sebelum distribusi publik. Pengujian ini belum dilakukan pada rilis 1.2.0.
 4. Publikasikan rilis dan pasang versi pertama yang mendukung updater secara manual. Setelah itu, setiap perubahan tetap memerlukan nomor versi baru, build bertanda tangan, dan publikasi rilis baru.
 
-Lokasi output saat ini masih `release-1.2.0` dalam `electron-builder.json`; sesuaikan untuk rilis berikutnya atau gunakan folder tetap seperti `release`. Memperbarui README saja tidak mengubah installer yang sudah dibuat.
+Lokasi output saat ini `release-1.3.0` dalam `electron-builder.json`; sesuaikan untuk rilis berikutnya atau gunakan folder tetap seperti `release`. Memperbarui README saja tidak mengubah installer yang sudah dibuat.
 
 ## Status pengujian
 
